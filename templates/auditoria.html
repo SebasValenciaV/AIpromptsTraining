@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Auditoría de Prompts</title>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}">Comparación de Prompts</a> |
+        <a href="{{ url_for('auditoria') }}">Auditoría de Prompts</a>
+    </nav>
+    <div class="container">
+        <h1>Auditoría de Prompts</h1>
+        <div class="responses">
+            <div class="correct-responses">
+                <h2>Respuestas Correctas</h2>
+                {% for item in correct_responses %}
+                    <h3>Prompt: {{ item.prompt }}</h3>
+                    <p>Respuesta: {{ item.response }}</p>
+                    {% if item.code %}
+                        <pre><code>{{ item.code }}</code></pre>
+                    {% endif %}
+                    <p>Resultado de ejecución: {{ item.execution }}</p>
+                {% endfor %}
+            </div>
+            <div class="incorrect-responses">
+                <h2>Respuestas Incorrectas</h2>
+                {% for item in incorrect_responses %}
+                    <h3>Prompt: {{ item.prompt }}</h3>
+                    <p>Respuesta: {{ item.response }}</p>
+                    {% if item.code %}
+                        <pre><code>{{ item.code }}</code></pre>
+                    {% endif %}
+                    <p>Resultado de ejecución: {{ item.execution }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

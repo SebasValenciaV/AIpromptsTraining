@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>AI Prompts Comparison</title>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}">Comparación de Prompts</a> |
+        <a href="{{ url_for('auditoria') }}">Auditoría de Prompts</a>
+    </nav>
+    <div class="container">
+        <h1>AI Prompts Comparison</h1>
+        <div class="prompts">
+            <div class="best-prompts">
+                <h2>Mejores Prompts</h2>
+                {% for category, prompts in best_prompts.items() %}
+                    <h3>{{ category }}</h3>
+                    <ul>
+                        {% for prompt in prompts %}
+                            <li>{{ prompt }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endfor %}
+            </div>
+            <div class="bad-prompts">
+                <h2>Malos Prompts</h2>
+                {% for category, prompts in bad_prompts.items() %}
+                    <h3>{{ category }}</h3>
+                    <ul>
+                        {% for prompt in prompts %}
+                            <li>{{ prompt }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
